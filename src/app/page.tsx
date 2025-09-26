@@ -3,6 +3,7 @@
 import { useState, useEffect, type ChangeEvent } from "react";
 import Image from "next/image";
 import { Leaf, Search, Info, FileText, FlaskConical, Sparkles, Database, Users } from "lucide-react";
+import { ImageCarousel } from "@/components/ui/ImageCarousel";
 
 import Header from "@/components/Header";
 import { Input } from "@/components/ui/input";
@@ -95,6 +96,7 @@ export default function Home() {
   const [allSpecimens, setAllSpecimens] = useState<Specimen[]>([]);
   const [filteredSpecimens, setFilteredSpecimens] = useState<Specimen[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -146,56 +148,79 @@ export default function Home() {
       <Header />
       <main className="pt-0">
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-botanical-gradient pt-20 lg:pt-24">
-          {/* Background Image */}
-          <div className="absolute inset-0">
-            <Image
-              src="/images/landingimg/Landing_herbario.png"
-              alt="Herbario USM - Fondo"
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover"
+        <section className="relative overflow-hidden bg-botanical-gradient pt-20 lg:pt-24 min-h-[65vh] flex items-center">
+          {/* Background Image Carousel */}
+          <div className="absolute inset-0 z-0">
+            <ImageCarousel 
+              images={[
+                '/images/landingimg/Landing_herbario.png',
+                '/images/landingimg/flor-amancaes.png',
+                '/images/landingimg/flor-azucena.png',
+                '/images/landingimg/flor-mashua.png',
+                '/images/landingimg/flor-papa.png'
+              ]}
+              currentIndex={currentSlide}
+              onSlideChange={setCurrentSlide}
+              interval={5000}
+              className="object-cover h-full w-full"
+              showDots={false}
             />
           </div>
+          
           {/* Overlay for readability */}
-          <div className="absolute inset-0 bg-gradient-to-br from-botanical-cream/50 via-transparent to-botanical-sage/20"></div>
-          <div className="relative container mx-auto px-4 min-h-[65vh] flex items-center justify-center py-16 lg:py-20">
-            <div className="text-center max-w-5xl mx-auto">
-              <div className="mx-auto max-w-4xl bg-black/35 backdrop-blur-sm md:backdrop-blur-md rounded-2xl border border-white/10 shadow-lg p-6 md:p-8 md:-translate-y-2 lg:-translate-y-3">
-                <h1 className="font-headline text-4xl md:text-6xl lg:text-7xl font-bold text-botanical-shadow mb-6 text-shadow leading-tight text-white">
-                  Del Perú hacia el mundo,{" "}
-                  <span className="text-botanical-leaf">mas de 800 mil especímenes</span>
-                </h1>
-                <p className="text-lg lg:text-xl text-white/90 mb-8 mx-auto leading-relaxed">
-                  <span className="font-semibold text-botanical-leaf"></span>Se embarca en
-                  un proyecto de digitalización para hacer accesible su invaluable
-                  colección a investigadores, educadores y al público en general.
-                </p>
-                <div className="flex flex-wrap justify-center gap-4 mb-4">
-                  <div className="flex items-center gap-2 bg-botanical-cream/80 backdrop-blur-sm px-4 py-2 rounded-full border border-botanical-sage/30">
-                    <Database className="w-5 h-5 text-botanical-leaf" />
-                    <span className="text-sm font-medium text-botanical-shadow">1,500 especímenes Tipo</span>
+          <div className="absolute inset-0 bg-gradient-to-br from-botanical-cream/50 via-transparent to-botanical-sage/20 z-10"></div>
+          
+          {/* Content Container */}
+          <div className="relative z-20 w-full">
+            <div className="container mx-auto px-4">
+              <div className="max-w-3xl mx-auto">
+                <div className="bg-black/35 backdrop-blur-sm md:backdrop-blur-md rounded-2xl border border-white/10 shadow-lg p-8 md:p-10 lg:p-12 -translate-y-4">
+                  <h1 className="font-headline text-3xl md:text-5xl lg:text-6xl font-bold text-botanical-shadow mb-4 text-shadow leading-tight text-white text-center">
+                    Del Perú hacia el mundo,{' '}
+                    <span className="text-botanical-leaf block mt-2">más de 800 mil especímenes</span>
+                  </h1>
+                  <div className="h-px bg-white/20 my-6 w-3/4 mx-auto"></div>
+                  <p className="text-base lg:text-lg text-white/90 mb-6 mx-auto leading-relaxed text-center">
+                    Se embarca en un proyecto de digitalización para hacer accesible su invaluable
+                    colección a investigadores, educadores y al público en general.
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-3 mt-8">
+                    <div className="flex items-center gap-2 bg-botanical-cream/80 backdrop-blur-sm px-4 py-2 rounded-full border border-botanical-sage/30">
+                      <Database className="w-5 h-5 text-botanical-leaf" />
+                      <span className="text-sm font-medium text-botanical-shadow">1,500 especímenes Tipo</span>
+                    </div>
+                    <div className="flex items-center gap-2 bg-botanical-cream/80 backdrop-blur-sm px-4 py-2 rounded-full border border-botanical-sage/30">
+                      <Users className="w-5 h-5 text-botanical-leaf" />
+                      <span className="text-sm font-medium text-botanical-shadow">8,000 colecciones históricas</span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2 bg-botanical-cream/80 backdrop-blur-sm px-4 py-2 rounded-full border border-botanical-sage/30">
-                    <Users className="w-5 h-5 text-botanical-leaf" />
-                    <span className="text-sm font-medium text-botanical-shadow">8,000 colecciones históricas</span>
+                  
+                  {/* Carousel Dots */}
+                  <div className="mt-8 flex justify-center space-x-3">
+                    {[0, 1, 2, 3, 4].map((index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentSlide(index)}
+                        className={`h-3 w-3 rounded-full transition-all duration-300 relative ${
+                          index === currentSlide 
+                            ? 'bg-white scale-125' 
+                            : 'bg-white/50 hover:bg-white/75'
+                        }`}
+                        aria-label={`Ir a la imagen ${index + 1}`}
+                        aria-current={index === currentSlide ? 'true' : 'false'}
+                      >
+                        <span className="sr-only">Ir a la imagen {index + 1}</span>
+                        {index === currentSlide && (
+                          <span className="absolute inset-0 rounded-full bg-white/30 animate-ping"></span>
+                        )}
+                      </button>
+                    ))}
                   </div>
-                </div>
-              </div>
-              <div className="flex flex-wrap justify-center gap-4 mb-12 hidden">
-                <div className="flex items-center gap-2 bg-botanical-cream/80 backdrop-blur-sm px-4 py-2 rounded-full border border-botanical-sage/30">
-                  <Database className="w-5 h-5 text-botanical-leaf" />
-                  <span className="text-sm font-medium text-botanical-shadow">1,500 especímenes Tipo</span>
-                </div>
-                <div className="flex items-center gap-2 bg-botanical-cream/80 backdrop-blur-sm px-4 py-2 rounded-full border border-botanical-sage/30">
-                  <Users className="w-5 h-5 text-botanical-leaf" />
-                  <span className="text-sm font-medium text-botanical-shadow">8,000 colecciones históricas</span>
                 </div>
               </div>
             </div>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent z-10"></div>
         </section>
 
         {/* Features Section */}
@@ -253,100 +278,6 @@ export default function Home() {
           </div>
         </section>
         
-        {/* Search Section */}
-        <section className="container mx-auto px-4 py-12">
-          <div className="max-w-3xl mx-auto text-center mb-8">
-            <h2 className="font-headline text-2xl lg:text-3xl font-bold text-botanical-shadow mb-4">
-              Busca en Nuestra Colección
-            </h2>
-            <p className="text-botanical-earth/70 mb-8">
-              Explora más de 750,000 especímenes digitalizados con nuestra búsqueda inteligente
-            </p>
-          </div>
-          <div className="max-w-2xl mx-auto mb-12">
-            <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-botanical-leaf/20 to-botanical-amber/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              <div className="relative bg-card/80 backdrop-blur-sm rounded-2xl border border-botanical-sage/30 shadow-lg hover:shadow-xl transition-all-smooth">
-                <Search className="absolute left-6 top-1/2 -translate-y-1/2 h-5 w-5 text-botanical-leaf/60" />
-                <Input
-                  type="search"
-                  placeholder="Buscar por nombre científico, familia o colector..."
-                  className="w-full pl-14 pr-6 py-6 text-base bg-transparent border-0 rounded-2xl focus:ring-2 focus:ring-botanical-leaf/30 placeholder:text-botanical-earth/50"
-                  value={searchTerm}
-                  onChange={handleSearch}
-                  aria-label="Search specimens"
-                />
-              </div>
-            </div>
-            {searchTerm && (
-              <div className="mt-4 text-center">
-                <p className="text-sm text-botanical-earth/70">
-                  Mostrando resultados para: <span className="font-medium text-botanical-leaf">"{searchTerm}"</span>
-                </p>
-              </div>
-            )}
-          </div>
-        </section>
-
-        {/* Results Section */}
-        <section className="container mx-auto px-4 pb-16">
-          {loading && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {Array.from({ length: 8 }).map((_, i) => (
-                <Card key={i} className="card-botanical">
-                  <Skeleton className="h-64 w-full rounded-t-xl" />
-                  <CardContent className="p-5 space-y-3">
-                    <Skeleton className="h-6 w-3/4" />
-                    <Skeleton className="h-4 w-1/2" />
-                    <Skeleton className="h-4 w-1/3" />
-                  </CardContent>
-                  <CardFooter className="p-5 pt-0">
-                    <Skeleton className="h-6 w-1/4 rounded-full" />
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-          )}
-
-        {error && (
-          <Alert variant="destructive" className="max-w-2xl mx-auto">
-            <Info className="h-4 w-4" />
-            <AlertTitle>Error</AlertTitle>
-            <AlertDescription>{error}</AlertDescription>
-          </Alert>
-        )}
-
-          {!loading && !error && filteredSpecimens.length > 0 && (
-            <>
-              <div className="text-center mb-8">
-                <p className="text-botanical-earth/70">
-                  Encontrados <span className="font-semibold text-botanical-leaf">{filteredSpecimens.length}</span> especímenes
-                </p>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {filteredSpecimens.map((specimen) => (
-                  <SpecimenCard key={specimen.id_catalogo} specimen={specimen} />
-                ))}
-              </div>
-            </>
-          )}
-
-          {!loading && !error && filteredSpecimens.length === 0 && (
-            <div className="text-center py-16">
-              <div className="max-w-md mx-auto">
-                <div className="mb-6">
-                  <Search className="w-16 h-16 text-botanical-sage/50 mx-auto mb-4" />
-                </div>
-                <p className="text-xl text-botanical-earth/80 mb-2">
-                  No se encontraron resultados para "{searchTerm}".
-                </p>
-                <p className="text-botanical-earth/60">
-                  Intenta con otro término de búsqueda o explora nuestra colección completa.
-                </p>
-              </div>
-            </div>
-          )}
-        </section>
         
         {/* News Section */}
         <section className="container mx-auto px-4 py-16">

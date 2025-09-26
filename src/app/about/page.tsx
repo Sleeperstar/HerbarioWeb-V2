@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import TeamMemberCard, { TeamMember } from "@/components/TeamMemberCard";
 import { Info, Landmark, Target, BookOpenText, Rocket } from "lucide-react";
+import Image from "next/image";
 
 export default function About() {
   return (
@@ -31,11 +32,25 @@ export default function About() {
                 </p>
               </div>
             </div>
-            <div className="card-botanical p-6">
-              <h3 className="font-headline text-xl font-bold text-botanical-shadow mb-3">Justificación e Impacto</h3>
-              <p className="text-botanical-earth/80 leading-relaxed">
-                Digitalizamos el Herbario USM para democratizar el acceso, preservar para futuras generaciones y potenciar la investigación científica, la educación y la economía del Perú.
-              </p>
+            <div className="card-botanical p-6 flex flex-col md:flex-row gap-6 h-full">
+              <div className="md:w-1/2">
+                <h3 className="font-headline text-xl font-bold text-botanical-shadow mb-3">Justificación e Impacto</h3>
+                <p className="text-botanical-earth/80 leading-relaxed">
+                  Digitalizamos el Herbario USM para democratizar el acceso, preservar para futuras generaciones y potenciar la investigación científica, la educación y la economía del Perú.
+                </p>
+              </div>
+              <div className="md:w-1/2 h-48 md:h-auto">
+                <div className="relative w-full h-full rounded-lg overflow-hidden">
+                  <Image
+                    src="/images/Museo.png"
+                    alt="Museo de Historia Natural"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    priority
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -109,48 +124,56 @@ function TeamGrid() {
       role: "Investigadora principal",
       faculty: "Facultad: Ciencias Biológicas",
       imageUrl: "/images/integrantes/Gisella Orjeda.jpeg",
+      externalLink: "https://dina.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=157",
     },
     {
       name: "Arakaki Makishi Monica",
       role: "Investigadora principal",
       faculty: "Facultad: Ciencias Biológicas",
       imageUrl: "/images/integrantes/ARAKAKI MAKISHI.jpeg",
+      externalLink: "https://dina.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=3852",
     },
     {
       name: "Alban Castillo Joaquina Adelaida",
       role: "Investigadora principal",
       faculty: "Facultad: Ciencias Biológicas",
       imageUrl: "/images/integrantes/ALBAN CASTILLO.jpeg",
+      externalLink: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=2366",
     },
     {
       name: "Millan Salazar Betty Gaby",
       role: "Investigadora principal",
       faculty: "Facultad: Ciencias Biológicas",
       imageUrl: "/images/integrantes/MILLAN SALAZAR.jpeg",
+      externalLink: "https://dina.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=75",
     },
     {
       name: "Herrera Quispe Jose Alfredo",
       role: "Investigador principal",
       faculty: "Facultad: Ingeniería de Sistemas e Informática",
       imageUrl: "/images/integrantes/Jose Herrera.jpeg",
+      externalLink: "https://dina.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=19",
     },
     {
-      name: "GABRIEL CAMPOS EDWIN NATIVIDAD",
+      name: "Gabriel Campos Edwin Natividad",
       role: "Investigador principal",
       faculty: "Facultad: Ciencias Sociales",
       imageUrl: "/images/integrantes/GABRIEL CAMPOS.jpeg",
+      externalLink: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=24538",
     },
     {
-      name: "LEON BOCANGEL DE YOUNG BLANCA ROSA",
+      name: "Leon Bocangel de Young Blanca Rosa",
       role: "Investigadora principal",
       faculty: "Facultad: Ciencias Biológicas",
       imageUrl: "/images/integrantes/Blanca Leon.jpeg",
+      externalLink: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=3855",
     },
     {
-      name: "CANO ECHEVARRIA ASUNCION ALIPIO",
+      name: "Cano Echevarria Asuncion Alipio",
       role: "Investigador principal",
       faculty: "Facultad: Ciencias Biológicas",
       imageUrl: "/images/integrantes/Cano Echevarria.jpeg",
+      externalLink: "https://dina.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=2953",
     },
     {
       name: "Quispe Huallpa Jhampier Edison",

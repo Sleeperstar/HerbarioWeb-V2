@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { Menu, X, Search, BookOpen, Info } from "lucide-react";
+import { Menu, X, Home, BookOpen, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
@@ -56,8 +56,8 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
-            <NavLink href="/" icon={<Search className="w-4 h-4 text-[#ec973a]" />}>
-              Explorar
+            <NavLink href="/" icon={<Home className="w-4 h-4 text-[#ec973a]" />}>
+              Inicio
             </NavLink>
             <NavLink href="/about" icon={<Info className="w-4 h-4 text-[#ec973a]" />}>
               Acerca del Proyecto
@@ -87,8 +87,8 @@ export default function Header() {
         {isMenuOpen && (
           <div className="md:hidden absolute top-full left-0 right-0 bg-[#751a1d]/95 border-b border-white/10 shadow-lg">
             <div className="px-4 py-4 space-y-2">
-              <MobileNavLink href="/" icon={<Search className="w-4 h-4 text-[#ec973a]" />} onClick={() => setIsMenuOpen(false)}>
-                Explorar Colección
+              <MobileNavLink href="/" icon={<Home className="w-4 h-4 text-[#ec973a]" />} onClick={() => setIsMenuOpen(false)}>
+                Inicio
               </MobileNavLink>
               <MobileNavLink href="/about" icon={<Info className="w-4 h-4 text-[#ec973a]" />} onClick={() => setIsMenuOpen(false)}>
                 Acerca del Proyecto
