@@ -39,8 +39,12 @@ export default function TeamMemberCard({ member }: { member: TeamMember }) {
           <h3 className="text-lg font-semibold text-foreground">{member.name}</h3>
           <p className="text-sm text-muted-foreground">{member.role}</p>
           <p className="text-xs text-muted-foreground/80">{member.faculty}</p>
-          <p className="text-xs text-muted-foreground/80">Laboratorio: </p>
-          <p className="text-xs text-muted-foreground/80">Especialidad: </p>
+          {member.laboratorio && (
+            <p className="text-xs text-muted-foreground/80">Nombre del Laboratorio: {member.laboratorio}</p>
+          )}
+          {member.especialidad && (
+            <p className="text-xs text-muted-foreground/80">Especialidad: {member.especialidad}</p>
+          )}
         </div>
       </div>
     </div>

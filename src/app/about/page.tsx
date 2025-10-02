@@ -12,8 +12,10 @@ export default function About() {
         <section className="mb-10">
           <div className="card-botanical p-8 rounded-2xl bg-gradient-to-r from-botanical-cream/70 to-botanical-sage/40 border border-botanical-sage/30">
             <h1 className="font-headline text-4xl font-bold text-botanical-shadow mb-3">Acerca del Proyecto</h1>
-            <p className="text-botanical-earth/80 max-w-3xl">
-              Preservamos y democratizamos el conocimiento botánico del Perú mediante la digitalización del Herbario USM.
+            <p className="text-botanical-earth/80">
+              <span className="font-semibold">Resumen del proyecto:</span> El Herbario San Marcos (USM) del Museo de Historia Natural de la UNMSM es el más importante del país, tanto por el número de especímenes de flora peruana que conserva (más de 750,000), como por sus colecciones históricas y ejemplares Tipo, estos últimos asociados al descubrimiento y descripción de nuevas especies. En principio, cada uno de los especímenes se constituye en un testigo para la validación del trabajo científico, y el acceso a estas colecciones y su información asociada, es de suma importancia en estudios de diversidad a diferentes niveles, así como estudios ecológicos y ambientales con impacto en la ciencia, la cultura y la economía. El proyecto de digitalización y creación de una plataforma informática integrará imágenes de alta calidad, valiosa metadata asociada a los especímenes, particularmente geográfica (ubicación en mapa), y estará diseñada para recibir información citológica, de secuencias de ADN, literatura, etc. El objetivo es hacer accesible a todos los científicos, estudiantes y público en general la información contenida en el Herbario USM, así como el código para promover las prácticas open source en los centros de colecciones científicas del Perú, colocando a la UNMSM como líder de la investigación botánica y nuevas tecnologías. Para efectos del presente proyecto, se digitalizarán inicialmente los 1500 especímenes Tipo y las colecciones históricas, como la de Antonio Raimondi, Augusto Weberbauer y Ramón Ferreyra, entre otros.  La colección histórica consta de 8000 ejemplares. Se integrarán técnicas modernas de indización basadas en inteligencia artificial, para facilitar la búsqueda de información de especímenes, así como para la integración con otras plataformas abiertas y técnicas de visualización, como geovisores; y de localización, como las basadas en imágenes satelitales. Asimismo, iniciaremos la extracción de ADN de muestras herborizadas y consecuente codificación de barras. El laboratorio de Genómica y Bioinformática para la Biodiversidad de la FCCBB, acaba de adquirir un computador de alta performance con fondos de PROCIENCIA que será puesto a disposición para el presente proyecto. Así, el primer despliegue de esta plataforma será realizado en el servidor RAIMONDI, de la Facultad de Ciencias Biológicas, a forma de prototipo funcional.
+              <br /><br />
+              Este proyecto propone el primer hito de virtualización del Herbario USM, considerando las especies de importancia nomenclatural, histórica y cultural. Así, proponemos digitalizar y realizar la conservación preventiva de 8000 especímenes de plantas históricas, y 1500 muestras de la colección Tipo que incluyen los ejemplares originales a partir de los cuales se realizan las descripciones de las nuevas especies para la ciencia.
             </p>
           </div>
         </section>
@@ -120,9 +122,11 @@ export default function About() {
 function TeamGrid() {
   const team: TeamMember[] = [
     {
-      name: "Orjeda Fernandez Maria Gisella",
+      name: "Orjeda Fernández Maria Gisella",
       role: "Investigadora principal",
       faculty: "Facultad: Ciencias Biológicas",
+      laboratorio: "Laboratorio de Genómica y Bioinformática para la Biodiversidad",
+      especialidad: "Genética",
       imageUrl: "/images/integrantes/Gisella Orjeda.jpeg",
       externalLink: "https://dina.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=157",
     },
